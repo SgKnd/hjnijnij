@@ -1,0 +1,821 @@
+<script>
+  // ---------- ДАННЫЕ РЕЦЕПТОВ (упрощённые, на 1 порцию) ----------
+  const recipes = [
+    {
+      id: "stew_potato_meat_mushroom_sourcream",
+      title: "Тушёная картошка с мясом и грибами в сметане",
+      portions: 1,
+      timeMinutes: 40,
+      difficulty: "medium",
+      sourceUrl: "https://www.russianfood.com/recipes/recipe.php?rid=165787",
+      tags: ["картофель", "мясо", "грибы"],
+      ingredients: [
+        { name: "мясо (свинина или говядина)", amount: 150, unit: "g" },
+        { name: "картофель", amount: 250, unit: "g" },
+        { name: "шампиньоны", amount: 90, unit: "g" },
+        { name: "лук репчатый", amount: 40, unit: "g" },
+        { name: "сметана 20%", amount: 40, unit: "g" },
+        { name: "растительное масло", amount: 10, unit: "g" },
+        { name: "вода", amount: 180, unit: "ml" },
+        { name: "соль", amount: null, unit: "to_taste" },
+        { name: "перец чёрный молотый", amount: null, unit: "to_taste" }
+      ],
+      steps: [
+        "Подготовь продукты: мясо нарежь кубиками, картофель — крупными кусками, лук — мелким кубиком, грибы — пластинками.",
+        "Разогрей масло в глубокой сковороде или сотейнике. Обжарь мясо до лёгкой румяности, посоли и поперчи.",
+        "Добавь лук, жарь до мягкости. Затем добавь грибы и жарь, пока они не уменьшатся в объёме и лишняя жидкость не выпарится.",
+        "Положи картофель, перемешай. Влей воду так, чтобы она почти закрывала содержимое. Доведи до кипения, убавь огонь и туши под крышкой 20–25 минут до мягкости мяса и картофеля.",
+        "Добавь сметану, аккуратно перемешай, приправь по вкусу. Потуши ещё 3–5 минут на слабом огне.",
+        "Сними с огня, дай постоять под крышкой пару минут и подавай."
+      ]
+    },
+    {
+      id: "pasta_meat_tomato_sauce_pan",
+      title: "Макароны с мясом в томатном соусе (на сковороде)",
+      portions: 1,
+      timeMinutes: 30,
+      difficulty: "easy",
+      sourceUrl: "https://www.russianfood.com/recipes/recipe.php?rid=164739",
+      tags: ["макароны", "мясо", "томат"],
+      ingredients: [
+        { name: "мясо (свинина или говядина)", amount: 130, unit: "g" },
+        { name: "макароны (сухие)", amount: 80, unit: "g" },
+        { name: "лук репчатый", amount: 35, unit: "g" },
+        { name: "морковь", amount: 35, unit: "g" },
+        { name: "томатный сок/пюре", amount: 100, unit: "ml" },
+        { name: "растительное масло", amount: 10, unit: "g" },
+        { name: "соль", amount: null, unit: "to_taste" },
+        { name: "перец чёрный молотый", amount: null, unit: "to_taste" },
+        { name: "паприка/сушёный чеснок", amount: null, unit: "to_taste" }
+      ],
+      steps: [
+        "Отвари макароны в подсоленной воде до состояния аль денте, слей воду.",
+        "Лук нарежь мелким кубиком, морковь — мелкой соломкой или натри на крупной тёрке. Мясо нарежь небольшими кусочками.",
+        "Разогрей масло в сковороде, обжарь мясо до румяности, посоли и поперчи.",
+        "Добавь лук, жарь пару минут до мягкости, затем добавь морковь и обжаривай ещё несколько минут.",
+        "Влей томатный сок или пюре, приправь специями, при необходимости добавь немного воды. Туши на среднем огне 5–7 минут.",
+        "Добавь к соусу отваренные макароны, хорошо перемешай и прогрей ещё 1–2 минуты, чтобы макароны пропитались соусом."
+      ]
+    },
+    {
+      id: "egg_pockets_ham_cheese",
+      title: "Яичные конвертики с сыром и ветчиной",
+      portions: 1,
+      timeMinutes: 20,
+      difficulty: "easy",
+      sourceUrl: "https://www.russianfood.com/recipes/recipe.php?rid=154015",
+      tags: ["яйца", "сыр", "ветчина"],
+      ingredients: [
+        { name: "яйцы", amount: 2, unit: "pcs" },
+        { name: "ветчина/колбаса варёная", amount: 50, unit: "g" },
+        { name: "сыр твёрдый", amount: 30, unit: "g" },
+        { name: "молоко или вода", amount: 25, unit: "ml" },
+        { name: "растительное масло", amount: 8, unit: "g" },
+        { name: "соль", amount: null, unit: "to_taste" },
+        { name: "перец чёрный молотый", amount: null, unit: "to_taste" }
+      ],
+      steps: [
+        "Ветчину нарежь мелкими кубиками или соломкой, сыр натри на тёрке и смешай с ветчиной.",
+        "В миске взбей яйца с молоком или водой, добавь щепотку соли и перца.",
+        "Разогрей сковороду с небольшим количеством масла. Влей половину яичной смеси, распределяя её тонким слоем по дну.",
+        "Обжарь омлетный слой до схватывания сверху. На середину выложи половину начинки из ветчины и сыра.",
+        "Сложи края омлета к центру, формируя конвертик. Аккуратно переверни и обжарь ещё минуту на слабом огне.",
+        "Повтори со второй половиной яичной массы и начинки, чтобы получился второй конвертик."
+      ]
+    }
+  ];
+
+  // ---------- СПРАВОЧНИК УПАКОВОК (типичные пачки) ----------
+  const defaultPackages = {
+    "макароны (сухие)":        { amount: 500, unit: "g" },   // пачка макарон
+    "сметана 20%":             { amount: 180, unit: "g" },   // стакан сметаны
+    "шампиньоны":              { amount: 300, unit: "g" },   // лоток грибов
+    "мясо (свинина или говядина)": { amount: 500, unit: "g" },
+    "морковь":                 { amount: 300, unit: "g" },
+    "лук репчатый":            { amount: 300, unit: "g" },
+    "томатный сок/пюре":       { amount: 500, unit: "ml" },
+    "ветчина/колбаса варёная": { amount: 150, unit: "g" },
+    "сыр твёрдый":             { amount: 200, unit: "g" },
+    "молоко или вода":         { amount: 1000, unit: "ml" }, // пачка молока
+    "яйцы":                    { amount: 10, unit: "pcs" }   // десяток яиц
+  };
+
+  // ---------- СОСТОЯНИЕ ХОЛОДИЛЬНИКА (LocalStorage) ----------
+  const FRIDGE_KEY = "kishkoblud_fridge_v1";
+
+  function loadFridge() {
+    try {
+      const raw = localStorage.getItem(FRIDGE_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return [];
+      return parsed;
+    } catch (e) {
+      console.error("Ошибка загрузки холодильника", e);
+      return [];
+    }
+  }
+
+  function saveFridge(fridge) {
+    localStorage.setItem(FRIDGE_KEY, JSON.stringify(fridge));
+  }
+
+  let fridge = loadFridge();
+
+  // ---------- УТИЛИТЫ ----------
+
+  function normalizeName(name) {
+    return name.trim().toLowerCase();
+  }
+
+  function findFridgeItemByName(fridgeArr, ingredientName) {
+    const target = normalizeName(ingredientName);
+    return fridgeArr.find(item => normalizeName(item.name) === target);
+  }
+
+  // Статус рецепта относительно холодильника
+  function getRecipeMatchStatus(recipe, fridgeArr) {
+    const missing = [];
+    const lacking = [];
+
+    recipe.ingredients.forEach(ing => {
+      if (ing.amount === null || ing.unit === "to_taste") {
+        return; // соль/перец и т.п. не учитываем
+      }
+      const item = findFridgeItemByName(fridgeArr, ing.name);
+      if (!item) {
+        missing.push(ing);
+      } else if (typeof item.amount === "number" && item.amount < ing.amount) {
+        lacking.push({
+          ingredient: ing,
+          have: item.amount,
+          need: ing.amount - item.amount
+        });
+      }
+    });
+
+    let status = "full";
+    if (missing.length || lacking.length) {
+      const totalRelevant = recipe.ingredients.filter(
+        ing => ing.amount !== null && ing.unit !== "to_taste"
+      ).length;
+      if (missing.length + lacking.length === totalRelevant) {
+        status = "none";
+      } else {
+        status = "partial";
+      }
+    }
+
+    return { status, missing, lacking };
+  }
+
+  function formatUnit(unit) {
+    if (unit === "g") return "г";
+    if (unit === "ml") return "мл";
+    if (unit === "pcs") return "шт";
+    if (unit === "to_taste") return "по вкусу";
+    return unit;
+  }
+
+  function formatDateForHuman(dateStr) {
+    if (!dateStr) return "без даты";
+    const d = new Date(dateStr);
+    if (Number.isNaN(d.getTime())) return "некорректная дата";
+    return d.toLocaleDateString("ru-RU", { day: "2-digit", month: "2-digit" });
+  }
+
+  function daysDiffFromToday(dateStr) {
+    if (!dateStr) return null;
+    const d = new Date(dateStr);
+    if (Number.isNaN(d.getTime())) return null;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    d.setHours(0, 0, 0, 0);
+    const diffMs = d.getTime() - today.getTime();
+    return Math.round(diffMs / (1000 * 60 * 60 * 24));
+  }
+
+  // ---------- РЕНДЕРИНГ ----------
+
+  const viewsMap = {
+    dashboard: document.getElementById("view-dashboard"),
+    recipes: document.getElementById("view-recipes"),
+    fridge: document.getElementById("view-fridge")
+  };
+
+  const tabButtons = Array.from(document.querySelectorAll(".tab-button"));
+
+  function switchView(viewName) {
+    Object.entries(viewsMap).forEach(([name, el]) => {
+      if (name === viewName) {
+        el.classList.add("active");
+      } else {
+        el.classList.remove("active");
+      }
+    });
+
+    tabButtons.forEach(btn => {
+      if (btn.dataset.view === viewName) {
+        btn.classList.add("active");
+      } else {
+        btn.classList.remove("active");
+      }
+    });
+
+    if (viewName === "dashboard") {
+      renderSuggestions();
+      renderExpireBlock();
+    } else if (viewName === "fridge") {
+      renderFridge();
+    } else if (viewName === "recipes") {
+      renderRecipes();
+    }
+  }
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      switchView(btn.dataset.view);
+    });
+  });
+
+  // ----- Рендер холодильника -----
+
+  const fridgeListEl = document.getElementById("fridge-list");
+
+  function renderFridge() {
+    fridgeListEl.innerHTML = "";
+    if (!fridge.length) {
+      const empty = document.createElement("div");
+      empty.className = "fridge-empty";
+      empty.textContent = "В холодильнике пусто. Добавь хотя бы пару продуктов — и подбор рецептов оживёт.";
+      fridgeListEl.appendChild(empty);
+      return;
+    }
+
+    // сортируем: сначала с ближайшим сроком
+    const sorted = [...fridge].sort((a, b) => {
+      const da = daysDiffFromToday(a.expiresAt);
+      const db = daysDiffFromToday(b.expiresAt);
+      if (da == null && db == null) return 0;
+      if (da == null) return 1;
+      if (db == null) return -1;
+      return da - db;
+    });
+
+    sorted.forEach(item => {
+      const li = document.createElement("li");
+      li.className = "fridge-list-item";
+
+      const nameDiv = document.createElement("div");
+      nameDiv.className = "fridge-name";
+      nameDiv.textContent = item.name;
+
+      const amountDiv = document.createElement("div");
+      amountDiv.className = "fridge-amount";
+      amountDiv.textContent = `${item.amount ?? "?"} ${formatUnit(item.unit)}`;
+
+      const expireDiv = document.createElement("div");
+      expireDiv.className = "fridge-expire";
+
+      const diff = daysDiffFromToday(item.expiresAt);
+      let cls = "";
+      let text = "";
+      if (diff == null) {
+        cls = "";
+        text = "Срок не указан";
+      } else if (diff < 0) {
+        cls = "expire-danger";
+        text = `Просрочен ${formatDateForHuman(item.expiresAt)}`;
+      } else if (diff === 0) {
+        cls = "expire-danger";
+        text = `Годен до сегодня (${formatDateForHuman(item.expiresAt)})`;
+      } else if (diff <= 3) {
+        cls = "expire-soon";
+        text = `Годен до ${formatDateForHuman(item.expiresAt)} (${diff} дн.)`;
+      } else {
+        cls = "";
+        text = `До ${formatDateForHuman(item.expiresAt)} (${diff} дн.)`;
+      }
+      expireDiv.classList.add(cls);
+      expireDiv.textContent = text;
+
+      const btnDelete = document.createElement("button");
+      btnDelete.className = "btn-icon";
+      btnDelete.innerHTML = "✕";
+      btnDelete.title = "Удалить продукт";
+      btnDelete.addEventListener("click", () => {
+        fridge = fridge.filter(f => !(f.name === item.name && f.expiresAt === item.expiresAt && f.amount === item.amount && f.unit === item.unit));
+        saveFridge(fridge);
+        renderFridge();
+        renderSuggestions();
+        renderExpireBlock();
+      });
+
+      li.appendChild(nameDiv);
+      li.appendChild(amountDiv);
+      li.appendChild(expireDiv);
+      li.appendChild(btnDelete);
+
+      fridgeListEl.appendChild(li);
+    });
+  }
+
+  // ----- Добавление продукта -----
+
+  const fridgeForm = document.getElementById("fridge-form");
+  const fridgeNameInput = document.getElementById("fridge-name");
+  const fridgeAmountInput = document.getElementById("fridge-amount");
+  const fridgeUnitSelect = document.getElementById("fridge-unit");
+  const fridgeExpireInput = document.getElementById("fridge-expire");
+
+  fridgeForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = fridgeNameInput.value.trim();
+    const amount = parseFloat(fridgeAmountInput.value);
+    const unit = fridgeUnitSelect.value;
+    const expiresAt = fridgeExpireInput.value || null;
+
+    if (!name || Number.isNaN(amount)) {
+      return;
+    }
+
+    fridge.push({ name, amount, unit, expiresAt });
+    saveFridge(fridge);
+    fridgeNameInput.value = "";
+    fridgeAmountInput.value = "";
+    fridgeExpireInput.value = "";
+
+    renderFridge();
+    renderSuggestions();
+    renderExpireBlock();
+  });
+
+  // ----- Рендер рецептов -----
+
+  const recipesListEl = document.getElementById("recipes-list");
+
+  function renderRecipes() {
+    recipesListEl.innerHTML = "";
+    recipes.forEach(recipe => {
+      const { status, missing, lacking } = getRecipeMatchStatus(recipe, fridge);
+
+      const li = document.createElement("li");
+      li.className = "recipe-card";
+
+      // header
+      const headerRow = document.createElement("div");
+      headerRow.className = "recipe-header-row";
+
+      const titleDiv = document.createElement("div");
+      titleDiv.className = "recipe-title";
+      titleDiv.textContent = recipe.title;
+
+      const metaDiv = document.createElement("div");
+      metaDiv.className = "recipe-meta";
+      const timeSpan = document.createElement("span");
+      timeSpan.textContent = `⏱ ${recipe.timeMinutes} мин`;
+      const diffSpan = document.createElement("span");
+      diffSpan.textContent = recipe.difficulty === "easy" ? "легко" : "средне";
+      metaDiv.appendChild(timeSpan);
+      metaDiv.appendChild(diffSpan);
+
+      headerRow.appendChild(titleDiv);
+      headerRow.appendChild(metaDiv);
+
+      // status chip
+      const statusChip = document.createElement("span");
+      statusChip.className = "status-chip";
+      if (status === "full") {
+        statusChip.classList.add("status-full");
+        statusChip.textContent = "ВСЁ ЕСТЬ";
+      } else if (status === "partial") {
+        statusChip.classList.add("status-partial");
+        statusChip.textContent = "НУЖНО ДОКУПИТЬ";
+      } else {
+        statusChip.classList.add("status-partial");
+        statusChip.textContent = "ПОКА НЕТ ПРОДУКТОВ";
+      }
+
+      // body
+      const bodyDiv = document.createElement("div");
+      bodyDiv.className = "recipe-body";
+
+      const ingSummary = document.createElement("div");
+      ingSummary.textContent = `Ингредиентов: ${recipe.ingredients.length}`;
+      bodyDiv.appendChild(ingSummary);
+
+      if (missing.length || lacking.length) {
+        const chips = document.createElement("div");
+        chips.className = "chips-row";
+        missing.forEach(ing => {
+          const chip = document.createElement("span");
+          chip.className = "chip-muted";
+          chip.textContent = `Нет: ${ing.name}`;
+          chips.appendChild(chip);
+        });
+        lacking.forEach(entry => {
+          const chip = document.createElement("span");
+          chip.className = "chip-muted";
+          chip.textContent = `Мало: ${entry.ingredient.name} (нужно ещё ${entry.need} ${formatUnit(entry.ingredient.unit)})`;
+          chips.appendChild(chip);
+        });
+        bodyDiv.appendChild(chips);
+      }
+
+      // details with steps
+      const detailsEl = document.createElement("details");
+      const summaryEl = document.createElement("summary");
+      summaryEl.textContent = "Показать шаги приготовления";
+      detailsEl.appendChild(summaryEl);
+
+      const stepsOl = document.createElement("ol");
+      stepsOl.className = "steps";
+      recipe.steps.forEach(step => {
+        const liStep = document.createElement("li");
+        liStep.textContent = step;
+        stepsOl.appendChild(liStep);
+      });
+      detailsEl.appendChild(stepsOl);
+      bodyDiv.appendChild(detailsEl);
+
+      // actions
+      const actionsDiv = document.createElement("div");
+      actionsDiv.className = "recipe-actions";
+
+      const leftActions = document.createElement("div");
+      leftActions.appendChild(statusChip);
+
+      const rightActions = document.createElement("div");
+      rightActions.style.display = "flex";
+      rightActions.style.gap = "6px";
+
+      const cookBtn = document.createElement("button");
+      cookBtn.className = "btn-ghost";
+      cookBtn.textContent = "Я приготовил";
+      cookBtn.addEventListener("click", () => {
+        cookRecipe(recipe.id);
+      });
+      rightActions.appendChild(cookBtn);
+
+      const buyBtn = document.createElement("button");
+      buyBtn.className = "btn-ghost";
+      buyBtn.textContent = "Купил всё для рецепта";
+      buyBtn.addEventListener("click", () => {
+        buyForRecipe(recipe.id);
+      });
+      rightActions.appendChild(buyBtn);
+
+      if (recipe.sourceUrl) {
+        const linkBtn = document.createElement("a");
+        linkBtn.href = recipe.sourceUrl;
+        linkBtn.target = "_blank";
+        linkBtn.rel = "noreferrer";
+        linkBtn.className = "btn-ghost";
+        linkBtn.textContent = "Оригинал на сайте";
+        rightActions.appendChild(linkBtn);
+      }
+
+      actionsDiv.appendChild(leftActions);
+      actionsDiv.appendChild(rightActions);
+
+      li.appendChild(headerRow);
+      li.appendChild(bodyDiv);
+      li.appendChild(actionsDiv);
+
+      recipesListEl.appendChild(li);
+    });
+  }
+
+  // ----- Подбор рецептов на главной -----
+
+  const suggestedListEl = document.getElementById("suggested-list");
+
+  function renderSuggestions() {
+    suggestedListEl.innerHTML = "";
+
+    if (!recipes.length) {
+      const empty = document.createElement("div");
+      empty.className = "suggest-empty";
+      empty.textContent = "Рецептов пока нет. Добавь хотя бы один рецепт в коде.";
+      suggestedListEl.appendChild(empty);
+      return;
+    }
+
+    if (!fridge.length) {
+      const empty = document.createElement("div");
+      empty.className = "suggest-empty";
+      empty.textContent = "Холодильник пуст. Заполни продукты, чтобы я мог что-то предложить.";
+      suggestedListEl.appendChild(empty);
+      return;
+    }
+
+    const statuses = recipes.map(r => ({
+      recipe: r,
+      match: getRecipeMatchStatus(r, fridge)
+    }));
+
+    const full = statuses.filter(x => x.match.status === "full");
+    const partial = statuses.filter(x => x.match.status === "partial");
+
+    if (!full.length && !partial.length) {
+      const empty = document.createElement("div");
+      empty.className = "suggest-empty";
+      empty.textContent = "С тем, что сейчас есть в холодильнике, ни один рецепт не собирается. Попробуй что-то докупить.";
+      suggestedListEl.appendChild(empty);
+      return;
+    }
+
+    const addSectionTitle = (text) => {
+      const title = document.createElement("div");
+      title.style.fontSize = "13px";
+      title.style.marginBottom = "4px";
+      title.style.marginTop = "4px";
+      title.style.color = "var(--text-muted)";
+      title.textContent = text;
+      suggestedListEl.appendChild(title);
+    };
+
+    if (full.length) {
+      addSectionTitle("✅ Можно приготовить прямо сейчас:");
+      full.forEach(item => {
+        const li = document.createElement("li");
+        li.className = "recipe-card";
+
+        const headerRow = document.createElement("div");
+        headerRow.className = "recipe-header-row";
+
+        const titleDiv = document.createElement("div");
+        titleDiv.className = "recipe-title";
+        titleDiv.textContent = item.recipe.title;
+
+        const metaDiv = document.createElement("div");
+        metaDiv.className = "recipe-meta";
+        const timeSpan = document.createElement("span");
+        timeSpan.textContent = `⏱ ${item.recipe.timeMinutes} мин`;
+        metaDiv.appendChild(timeSpan);
+
+        headerRow.appendChild(titleDiv);
+        headerRow.appendChild(metaDiv);
+
+        const bodyDiv = document.createElement("div");
+        bodyDiv.className = "recipe-body";
+        bodyDiv.textContent = "Все основные ингредиенты уже есть в холодильнике.";
+
+        const actions = document.createElement("div");
+        actions.className = "recipe-actions";
+
+        const statusChip = document.createElement("span");
+        statusChip.className = "status-chip status-full";
+        statusChip.textContent = "ВСЁ ЕСТЬ";
+
+        const btn = document.createElement("button");
+        btn.className = "btn-ghost";
+        btn.textContent = "Открыть рецепт";
+        btn.addEventListener("click", () => {
+          switchView("recipes");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        actions.appendChild(statusChip);
+        actions.appendChild(btn);
+
+        li.appendChild(headerRow);
+        li.appendChild(bodyDiv);
+        li.appendChild(actions);
+
+        suggestedListEl.appendChild(li);
+      });
+    }
+
+    if (partial.length) {
+      addSectionTitle("🟡 Можно почти приготовить — нужно чуть-чуть докупить:");
+      partial.forEach(item => {
+        const li = document.createElement("li");
+        li.className = "recipe-card";
+
+        const headerRow = document.createElement("div");
+        headerRow.className = "recipe-header-row";
+
+        const titleDiv = document.createElement("div");
+        titleDiv.className = "recipe-title";
+        titleDiv.textContent = item.recipe.title;
+
+        const metaDiv = document.createElement("div");
+        metaDiv.className = "recipe-meta";
+        const timeSpan = document.createElement("span");
+        timeSpan.textContent = `⏱ ${item.recipe.timeMinutes} мин`;
+        metaDiv.appendChild(timeSpan);
+
+        headerRow.appendChild(titleDiv);
+        headerRow.appendChild(metaDiv);
+
+        const bodyDiv = document.createElement("div");
+        bodyDiv.className = "recipe-body";
+
+        const chips = document.createElement("div");
+        chips.className = "chips-row";
+        item.match.missing.forEach(ing => {
+          const chip = document.createElement("span");
+          chip.className = "chip-muted";
+          chip.textContent = `Нет: ${ing.name}`;
+          chips.appendChild(chip);
+        });
+        item.match.lacking.forEach(entry => {
+          const chip = document.createElement("span");
+          chip.className = "chip-muted";
+          chip.textContent = `Мало: ${entry.ingredient.name}`;
+          chips.appendChild(chip);
+        });
+        bodyDiv.appendChild(chips);
+
+        const actions = document.createElement("div");
+        actions.className = "recipe-actions";
+
+        const statusChip = document.createElement("span");
+        statusChip.className = "status-chip status-partial";
+        statusChip.textContent = "НУЖНО ДОКУПИТЬ";
+
+        const btn = document.createElement("button");
+        btn.className = "btn-ghost";
+        btn.textContent = "Список покупок";
+        btn.addEventListener("click", () => {
+          const lines = [];
+          item.match.missing.forEach(ing => {
+            lines.push(`- ${ing.name}: ${ing.amount ?? ""} ${formatUnit(ing.unit)}`);
+          });
+          item.match.lacking.forEach(entry => {
+            lines.push(`- ${entry.ingredient.name}: докупить ${entry.need} ${formatUnit(entry.ingredient.unit)}`);
+          });
+          alert("Что докупить:\n\n" + (lines.join("\n") || "Нечего докупать"));
+        });
+
+        actions.appendChild(statusChip);
+        actions.appendChild(btn);
+
+        li.appendChild(headerRow);
+        li.appendChild(bodyDiv);
+        li.appendChild(actions);
+
+        suggestedListEl.appendChild(li);
+      });
+    }
+  }
+
+  // ----- Сроки годности на главной -----
+
+  const expireBlockEl = document.getElementById("expire-block");
+
+  function renderExpireBlock() {
+    expireBlockEl.innerHTML = "";
+    if (!fridge.length) {
+      const text = document.createElement("div");
+      text.className = "secondary-text";
+      text.textContent = "Пока нет ни одного продукта — нечему портиться 🙂";
+      expireBlockEl.appendChild(text);
+      return;
+    }
+
+    const withDates = fridge
+      .map(item => ({ item, diff: daysDiffFromToday(item.expiresAt) }))
+      .filter(x => x.diff !== null)
+      .sort((a, b) => a.diff - b.diff);
+
+    const soon = withDates.filter(x => x.diff <= 3);
+    if (!soon.length) {
+      const text = document.createElement("div");
+      text.className = "secondary-text";
+      text.textContent = "Ни у одного продукта не горит срок в ближайшие 3 дня.";
+      expireBlockEl.appendChild(text);
+      return;
+    }
+
+    soon.slice(0, 5).forEach(x => {
+      const tag = document.createElement("div");
+      tag.className = "expire-tag";
+      const dot = document.createElement("span");
+      dot.className = "dot";
+      const label = document.createElement("span");
+      const prefix = x.diff < 0
+        ? "Просрочено:"
+        : x.diff === 0
+        ? "Сегодня последний день:"
+        : x.diff === 1
+        ? "Завтра истекает:"
+        : "Скоро истечёт:";
+      label.textContent = `${prefix} ${x.item.name} (${formatDateForHuman(x.item.expiresAt)})`;
+      tag.appendChild(dot);
+      tag.appendChild(label);
+      expireBlockEl.appendChild(tag);
+    });
+
+    if (withDates.length > 5) {
+      const more = document.createElement("div");
+      more.className = "secondary-text";
+      more.textContent = `Ещё ${withDates.length - 5} позиций с датой — смотри во вкладке «Холодильник».`;
+      expireBlockEl.appendChild(more);
+    }
+  }
+
+  // ----- Списание продуктов при готовке -----
+
+  function cookRecipe(recipeId) {
+    const recipe = recipes.find(r => r.id === recipeId);
+    if (!recipe) return;
+    let changed = false;
+
+    recipe.ingredients.forEach(ing => {
+      if (ing.amount === null || ing.unit === "to_taste") return;
+      const item = findFridgeItemByName(fridge, ing.name);
+      if (!item || typeof item.amount !== "number") return;
+      const newAmount = item.amount - ing.amount;
+      if (newAmount <= 0) {
+        fridge = fridge.filter(f => f !== item);
+      } else {
+        item.amount = Math.round(newAmount * 100) / 100;
+      }
+      changed = true;
+    });
+
+    if (changed) {
+      saveFridge(fridge);
+      renderFridge();
+      renderSuggestions();
+      renderRecipes();
+      renderExpireBlock();
+      alert("Продукты для этого рецепта списаны из холодильника (насколько удалось сопоставить по названию).");
+    } else {
+      alert("Не удалось списать продукты — похоже, ничего из ингредиентов не найдено в холодильнике по имени.");
+    }
+  }
+
+  // ----- Покупка «всё для рецепта» -----
+
+  function buyForRecipe(recipeId) {
+    const recipe = recipes.find(r => r.id === recipeId);
+    if (!recipe) return;
+
+    const addedLines = [];
+
+    recipe.ingredients.forEach(ing => {
+      if (ing.amount === null || ing.unit === "to_taste") return;
+
+      const key = normalizeName(ing.name);
+      const pkg = defaultPackages[key];
+      const addAmount = pkg?.amount ?? ing.amount;
+      const unit = pkg?.unit ?? ing.unit;
+
+      if (!addAmount || !unit) return;
+
+      // ищем уже существующий продукт с таким именем и единицей
+      let item = fridge.find(
+        f => normalizeName(f.name) === key && f.unit === unit
+      );
+
+      if (item) {
+        item.amount = (Number(item.amount) || 0) + addAmount;
+      } else {
+        item = {
+          name: ing.name,
+          amount: addAmount,
+          unit,
+          expiresAt: null
+        };
+        fridge.push(item);
+      }
+
+      addedLines.push(`${ing.name}: +${addAmount} ${formatUnit(unit)}`);
+    });
+
+    saveFridge(fridge);
+    renderFridge();
+    renderSuggestions();
+    renderExpireBlock();
+    renderRecipes();
+
+    if (addedLines.length) {
+      alert(
+        "Добавлены покупки по рецепту:\n\n" +
+          addedLines.join("\n") +
+          "\n\nНе забудь проставить сроки годности в разделе «Холодильник»."
+      );
+    } else {
+      alert("Не получилось подобрать упаковки для этого рецепта. Можно добавить продукты вручную в «Холодильник».");
+    }
+  }
+
+  // ----- Кнопка «Что приготовить сейчас» -----
+
+  const btnWhatToCook = document.getElementById("btn-what-to-cook");
+  btnWhatToCook.addEventListener("click", () => {
+    switchView("dashboard");
+    renderSuggestions();
+    renderExpireBlock();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // ----- ИНИЦИАЛИЗАЦИЯ -----
+  renderFridge();
+  renderRecipes();
+  renderSuggestions();
+  renderExpireBlock();
+</script>
