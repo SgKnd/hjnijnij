@@ -1,821 +1,520 @@
-<script>
-  // ---------- ДАННЫЕ РЕЦЕПТОВ (упрощённые, на 1 порцию) ----------
-  const recipes = [
-    {
-      id: "stew_potato_meat_mushroom_sourcream",
-      title: "Тушёная картошка с мясом и грибами в сметане",
-      portions: 1,
-      timeMinutes: 40,
-      difficulty: "medium",
-      sourceUrl: "https://www.russianfood.com/recipes/recipe.php?rid=165787",
-      tags: ["картофель", "мясо", "грибы"],
-      ingredients: [
-        { name: "мясо (свинина или говядина)", amount: 150, unit: "g" },
-        { name: "картофель", amount: 250, unit: "g" },
-        { name: "шампиньоны", amount: 90, unit: "g" },
-        { name: "лук репчатый", amount: 40, unit: "g" },
-        { name: "сметана 20%", amount: 40, unit: "g" },
-        { name: "растительное масло", amount: 10, unit: "g" },
-        { name: "вода", amount: 180, unit: "ml" },
-        { name: "соль", amount: null, unit: "to_taste" },
-        { name: "перец чёрный молотый", amount: null, unit: "to_taste" }
-      ],
-      steps: [
-        "Подготовь продукты: мясо нарежь кубиками, картофель — крупными кусками, лук — мелким кубиком, грибы — пластинками.",
-        "Разогрей масло в глубокой сковороде или сотейнике. Обжарь мясо до лёгкой румяности, посоли и поперчи.",
-        "Добавь лук, жарь до мягкости. Затем добавь грибы и жарь, пока они не уменьшатся в объёме и лишняя жидкость не выпарится.",
-        "Положи картофель, перемешай. Влей воду так, чтобы она почти закрывала содержимое. Доведи до кипения, убавь огонь и туши под крышкой 20–25 минут до мягкости мяса и картофеля.",
-        "Добавь сметану, аккуратно перемешай, приправь по вкусу. Потуши ещё 3–5 минут на слабом огне.",
-        "Сними с огня, дай постоять под крышкой пару минут и подавай."
-      ]
-    },
-    {
-      id: "pasta_meat_tomato_sauce_pan",
-      title: "Макароны с мясом в томатном соусе (на сковороде)",
-      portions: 1,
-      timeMinutes: 30,
-      difficulty: "easy",
-      sourceUrl: "https://www.russianfood.com/recipes/recipe.php?rid=164739",
-      tags: ["макароны", "мясо", "томат"],
-      ingredients: [
-        { name: "мясо (свинина или говядина)", amount: 130, unit: "g" },
-        { name: "макароны (сухие)", amount: 80, unit: "g" },
-        { name: "лук репчатый", amount: 35, unit: "g" },
-        { name: "морковь", amount: 35, unit: "g" },
-        { name: "томатный сок/пюре", amount: 100, unit: "ml" },
-        { name: "растительное масло", amount: 10, unit: "g" },
-        { name: "соль", amount: null, unit: "to_taste" },
-        { name: "перец чёрный молотый", amount: null, unit: "to_taste" },
-        { name: "паприка/сушёный чеснок", amount: null, unit: "to_taste" }
-      ],
-      steps: [
-        "Отвари макароны в подсоленной воде до состояния аль денте, слей воду.",
-        "Лук нарежь мелким кубиком, морковь — мелкой соломкой или натри на крупной тёрке. Мясо нарежь небольшими кусочками.",
-        "Разогрей масло в сковороде, обжарь мясо до румяности, посоли и поперчи.",
-        "Добавь лук, жарь пару минут до мягкости, затем добавь морковь и обжаривай ещё несколько минут.",
-        "Влей томатный сок или пюре, приправь специями, при необходимости добавь немного воды. Туши на среднем огне 5–7 минут.",
-        "Добавь к соусу отваренные макароны, хорошо перемешай и прогрей ещё 1–2 минуты, чтобы макароны пропитались соусом."
-      ]
-    },
-    {
-      id: "egg_pockets_ham_cheese",
-      title: "Яичные конвертики с сыром и ветчиной",
-      portions: 1,
-      timeMinutes: 20,
-      difficulty: "easy",
-      sourceUrl: "https://www.russianfood.com/recipes/recipe.php?rid=154015",
-      tags: ["яйца", "сыр", "ветчина"],
-      ingredients: [
-        { name: "яйцы", amount: 2, unit: "pcs" },
-        { name: "ветчина/колбаса варёная", amount: 50, unit: "g" },
-        { name: "сыр твёрдый", amount: 30, unit: "g" },
-        { name: "молоко или вода", amount: 25, unit: "ml" },
-        { name: "растительное масло", amount: 8, unit: "g" },
-        { name: "соль", amount: null, unit: "to_taste" },
-        { name: "перец чёрный молотый", amount: null, unit: "to_taste" }
-      ],
-      steps: [
-        "Ветчину нарежь мелкими кубиками или соломкой, сыр натри на тёрке и смешай с ветчиной.",
-        "В миске взбей яйца с молоком или водой, добавь щепотку соли и перца.",
-        "Разогрей сковороду с небольшим количеством масла. Влей половину яичной смеси, распределяя её тонким слоем по дну.",
-        "Обжарь омлетный слой до схватывания сверху. На середину выложи половину начинки из ветчины и сыра.",
-        "Сложи края омлета к центру, формируя конвертик. Аккуратно переверни и обжарь ещё минуту на слабом огне.",
-        "Повтори со второй половиной яичной массы и начинки, чтобы получился второй конвертик."
-      ]
-    }
-  ];
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кишкоблуд 4.1 (Исправленный)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; padding-bottom: 80px; }
+        
+        .view-section { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .view-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .tab-button.active { color: #ea580c; border-bottom: 2px solid #ea580c; }
+        
+        .recipe-card {
+            background: white; border-radius: 16px; overflow: hidden;
+            margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+        .recipe-image { height: 160px; width: 100%; object-fit: cover; }
+        .recipe-content { padding: 16px; }
 
-  // ---------- СПРАВОЧНИК УПАКОВОК (типичные пачки) ----------
-  const defaultPackages = {
-    "макароны (сухие)":        { amount: 500, unit: "g" },   // пачка макарон
-    "сметана 20%":             { amount: 180, unit: "g" },   // стакан сметаны
-    "шампиньоны":              { amount: 300, unit: "g" },   // лоток грибов
-    "мясо (свинина или говядина)": { amount: 500, unit: "g" },
-    "морковь":                 { amount: 300, unit: "g" },
-    "лук репчатый":            { amount: 300, unit: "g" },
-    "томатный сок/пюре":       { amount: 500, unit: "ml" },
-    "ветчина/колбаса варёная": { amount: 150, unit: "g" },
-    "сыр твёрдый":             { amount: 200, unit: "g" },
-    "молоко или вода":         { amount: 1000, unit: "ml" }, // пачка молока
-    "яйцы":                    { amount: 10, unit: "pcs" }   // десяток яиц
-  };
+        .autocomplete-items {
+            position: absolute; border: 1px solid #d4d4d4; border-bottom: none; border-top: none;
+            z-index: 99; top: 100%; left: 0; right: 0; background-color: white;
+            border-radius: 0 0 8px 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .autocomplete-items div { padding: 10px; cursor: pointer; background-color: #fff; border-bottom: 1px solid #d4d4d4; }
+        .autocomplete-items div:hover { background-color: #e9e9e9; }
 
-  // ---------- СОСТОЯНИЕ ХОЛОДИЛЬНИКА (LocalStorage) ----------
-  const FRIDGE_KEY = "kishkoblud_fridge_v1";
+        .filter-chip {
+            padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500;
+            background-color: #ffffff; border: 1px solid #e5e7eb; color: #374151; cursor: pointer; transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .filter-chip.active { background-color: #ea580c; color: white; border-color: #ea580c; }
+        
+        .status-chip { display: inline-block; padding: 4px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
+        .status-full { background-color: #dcfce7; color: #166534; }
+        .status-partial { background-color: #fef9c3; color: #854d0e; }
+        
+        .cart-checkbox { width: 20px; height: 20px; accent-color: #ea580c; cursor: pointer; }
+        .line-through-gray { text-decoration: line-through; color: #9ca3af; }
+        
+        /* Скрываем скроллбар */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body>
 
-  function loadFridge() {
-    try {
-      const raw = localStorage.getItem(FRIDGE_KEY);
-      if (!raw) return [];
-      const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed)) return [];
-      return parsed;
-    } catch (e) {
-      console.error("Ошибка загрузки холодильника", e);
-      return [];
-    }
-  }
+    <div class="max-w-md mx-auto min-h-screen bg-white shadow-xl overflow-hidden relative pb-16">
+        
+        <header class="bg-gradient-to-r from-orange-600 to-orange-500 text-white p-4 shadow-md sticky top-0 z-20 flex justify-between items-center">
+            <h1 class="text-xl font-bold flex items-center gap-2">🥘 Кишкоблуд 4.1</h1>
+            <button onclick="window.switchView('cart')" class="relative p-2">
+                <span class="text-2xl">🛒</span>
+                <span id="cart-badge" class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full hidden">0</span>
+            </button>
+        </header>
 
-  function saveFridge(fridge) {
-    localStorage.setItem(FRIDGE_KEY, JSON.stringify(fridge));
-  }
+        <!-- НАВИГАЦИЯ (ИСПРАВЛЕНА) -->
+        <nav class="flex border-b border-gray-200 bg-white sticky top-[60px] z-10 shadow-sm overflow-x-auto no-scrollbar">
+            <button class="tab-button flex-1 py-3 px-4 text-sm font-medium text-gray-500 hover:text-gray-700 active whitespace-nowrap" onclick="window.switchView('dashboard')">Главная</button>
+            <button class="tab-button flex-1 py-3 px-4 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="window.switchView('recipes')">Рецепты</button>
+            <button class="tab-button flex-1 py-3 px-4 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="window.switchView('fridge')">Холодильник</button>
+            <button class="tab-button flex-1 py-3 px-4 text-sm font-medium text-gray-500 hover:text-gray-700 whitespace-nowrap" onclick="window.switchView('cart')">Корзина</button>
+        </nav>
 
-  let fridge = loadFridge();
+        <!-- DASHBOARD -->
+        <div id="view-dashboard" class="view-section active p-4">
+            <div class="mb-6">
+                <h2 class="text-lg font-bold text-gray-800 mb-3 flex items-center">🔥 Срочно съесть</h2>
+                <div id="expire-block"></div>
+            </div>
+            <div>
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-lg font-bold text-gray-800">Что приготовить?</h2>
+                    <button onclick="window.renderSuggestions()" class="text-xs font-semibold text-orange-600 bg-orange-50 px-2 py-1 rounded">Обновить</button>
+                </div>
+                <ul id="suggested-list" class="space-y-4"></ul>
+            </div>
+        </div>
 
-  // ---------- УТИЛИТЫ ----------
+        <!-- RECIPES -->
+        <div id="view-recipes" class="view-section p-4 bg-gray-50 min-h-screen">
+            <div class="flex gap-2 mb-4 overflow-x-auto pb-2 no-scrollbar" id="recipe-filters">
+                <button class="filter-chip active" onclick="window.filterRecipes('all', this)">Все</button>
+                <button class="filter-chip" onclick="window.filterRecipes('breakfast', this)">Завтрак</button>
+                <button class="filter-chip" onclick="window.filterRecipes('lunch', this)">Обед</button>
+                <button class="filter-chip" onclick="window.filterRecipes('dinner', this)">Ужин</button>
+                <button class="filter-chip" onclick="window.filterRecipes('snack', this)">Закуски</button>
+            </div>
+            <ul id="recipes-list"></ul>
+        </div>
 
-  function normalizeName(name) {
-    return name.trim().toLowerCase();
-  }
+        <!-- FRIDGE -->
+        <div id="view-fridge" class="view-section p-4">
+            <div class="bg-white p-4 rounded-xl border border-orange-100 shadow-sm mb-6 relative">
+                <h3 class="font-semibold text-gray-800 mb-3">Добавить продукт</h3>
+                <form id="fridge-form" class="space-y-3" autocomplete="off">
+                    <div class="relative">
+                        <input type="text" id="fridge-name" placeholder="Название (напр. 'Сыр')" 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm">
+                        <div id="autocomplete-list" class="autocomplete-items"></div>
+                    </div>
+                    <div class="flex gap-2">
+                        <input type="number" id="fridge-amount" placeholder="Кол-во" step="0.1"
+                               class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm">
+                        <select id="fridge-unit" class="w-24 px-2 py-2 border border-gray-300 rounded-lg bg-white text-sm">
+                            <option value="g">г</option>
+                            <option value="ml">мл</option>
+                            <option value="pcs">шт</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="date" id="fridge-expire" 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm text-gray-600">
+                    </div>
+                    <button type="submit" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg transition">Добавить</button>
+                </form>
+            </div>
+            <div id="fridge-categories-container" class="space-y-4"></div>
+        </div>
 
-  function findFridgeItemByName(fridgeArr, ingredientName) {
-    const target = normalizeName(ingredientName);
-    return fridgeArr.find(item => normalizeName(item.name) === target);
-  }
+        <!-- CART -->
+        <div id="view-cart" class="view-section p-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-bold text-gray-800">Список покупок</h2>
+                <button onclick="window.clearCompletedCart()" class="text-xs text-red-500 hover:text-red-700">Удалить купленное</button>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden min-h-[200px]">
+                <ul id="cart-list" class="divide-y divide-gray-100"></ul>
+            </div>
+        </div>
+    </div>
 
-  // Статус рецепта относительно холодильника
-  function getRecipeMatchStatus(recipe, fridgeArr) {
-    const missing = [];
-    const lacking = [];
+    <script>
+      // 1. ДАННЫЕ
+      const recipes = [
+        {
+          id: "oatmeal", title: "Овсянка с ягодами", type: "breakfast",
+          img: "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          basePortions: 1, timeMinutes: 10,
+          ingredients: [{name:"Овсяные хлопья",amount:50,unit:"g"}, {name:"Молоко",amount:150,unit:"ml"}, {name:"Сахар",amount:10,unit:"g"}, {name:"Ягоды",amount:30,unit:"g"}],
+          steps: ["Свари хлопья на молоке.", "Добавь сахар и укрась ягодами."]
+        },
+        {
+          id: "borsch", title: "Борщ классический", type: "lunch",
+          img: "https://images.unsplash.com/photo-1596229415849-c702c2864606?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          basePortions: 4, timeMinutes: 90,
+          ingredients: [{name:"Говядина",amount:500,unit:"g"},{name:"Свекла",amount:300,unit:"g"},{name:"Картофель",amount:300,unit:"g"},{name:"Капуста белокочанная",amount:300,unit:"g"},{name:"Морковь",amount:100,unit:"g"},{name:"Лук репчатый",amount:100,unit:"g"},{name:"Томатная паста",amount:50,unit:"g"}],
+          steps: ["Свари бульон.", "Сделай зажарку.", "Вари овощи в бульоне."]
+        },
+        {
+          id: "stew_potato", title: "Тушёная картошка", type: "dinner",
+          img: "https://images.unsplash.com/photo-1534939561126-855b8675edd7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          basePortions: 2, timeMinutes: 40,
+          ingredients: [{name:"Свинина",amount:300,unit:"g"},{name:"Картофель",amount:500,unit:"g"},{name:"Лук репчатый",amount:80,unit:"g"},{name:"Сметана 20%",amount:80,unit:"g"}],
+          steps: ["Обжарь мясо и лук.", "Добавь картофель и воду.", "Туши до готовности."]
+        },
+        {
+          id: "greek_salad", title: "Греческий салат", type: "snack",
+          img: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          basePortions: 2, timeMinutes: 15,
+          ingredients: [{name:"Томаты",amount:200,unit:"g"},{name:"Огурцы",amount:150,unit:"g"},{name:"Сыр Фета",amount:100,unit:"g"},{name:"Маслины",amount:50,unit:"g"},{name:"Масло оливковое",amount:30,unit:"ml"}],
+          steps: ["Нарежь кубиками.", "Заправь маслом."]
+        },
+        {
+          id: "pancakes", title: "Блины", type: "breakfast",
+          img: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          basePortions: 3, timeMinutes: 40,
+          ingredients: [{name:"Молоко",amount:500,unit:"ml"},{name:"Яйца",amount:2,unit:"pcs"},{name:"Мука пшеничная",amount:200,unit:"g"},{name:"Сахар",amount:30,unit:"g"}],
+          steps: ["Смешай тесто.", "Жарь на сковороде."]
+        },
+        {
+          id: "carbonara", title: "Паста Карбонара", type: "dinner",
+          img: "https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+          basePortions: 2, timeMinutes: 20,
+          ingredients: [{name:"Спагетти",amount:200,unit:"g"},{name:"Бекон",amount:100,unit:"g"},{name:"Сыр Пармезан",amount:50,unit:"g"},{name:"Яйца",amount:2,unit:"pcs"},{name:"Сливки 20%",amount:100,unit:"ml"}],
+          steps: ["Свари пасту.", "Обжарь бекон.", "Смешай с соусом."]
+        }
+      ];
 
-    recipe.ingredients.forEach(ing => {
-      if (ing.amount === null || ing.unit === "to_taste") {
-        return; // соль/перец и т.п. не учитываем
-      }
-      const item = findFridgeItemByName(fridgeArr, ing.name);
-      if (!item) {
-        missing.push(ing);
-      } else if (typeof item.amount === "number" && item.amount < ing.amount) {
-        lacking.push({
-          ingredient: ing,
-          have: item.amount,
-          need: ing.amount - item.amount
-        });
-      }
-    });
+      const INGREDIENT_CATEGORIES = {
+          "veg": { label: "🍅 Овощи и Фрукты", items: ["картофель", "лук репчатый", "морковь", "капуста белокочанная", "свекла", "томаты", "огурцы", "перец болгарский", "ягоды", "чеснок", "зелень", "маслины"] },
+          "meat": { label: "🥩 Мясо и Рыба", items: ["свинина", "говядина", "куриное филе", "бекон", "ветчина", "колбаса"] },
+          "dairy": { label: "🥛 Молочка и Яйца", items: ["молоко", "сметана 20%", "яйца", "сыр фета", "сыр пармезан", "сливки 20%", "масло сливочное", "сыр твердый"] },
+          "grocery": { label: "🍝 Бакалея и прочее", items: ["макароны", "спагетти", "рис круглый", "гречка", "мука пшеничная", "сахар", "соль", "масло растительное", "масло оливковое", "томатная паста", "овсяные хлопья", "шампиньоны"] }
+      };
 
-    let status = "full";
-    if (missing.length || lacking.length) {
-      const totalRelevant = recipe.ingredients.filter(
-        ing => ing.amount !== null && ing.unit !== "to_taste"
-      ).length;
-      if (missing.length + lacking.length === totalRelevant) {
-        status = "none";
-      } else {
-        status = "partial";
-      }
-    }
+      const SYNONYMS = { "Картофель": ["картошка"], "Томаты": ["помидор"], "Спагетти": ["макароны", "паста"], "Лук репчатый": ["лук"], "Яйца": ["яйцо"] };
 
-    return { status, missing, lacking };
-  }
+      // 2. УТИЛИТЫ И СОСТОЯНИЕ
+      const STORAGE_KEY_FRIDGE = "kishkoblud_fridge_fixed";
+      const STORAGE_KEY_CART = "kishkoblud_cart_fixed";
+      
+      let fridge = JSON.parse(localStorage.getItem(STORAGE_KEY_FRIDGE) || "[]");
+      let cart = JSON.parse(localStorage.getItem(STORAGE_KEY_CART) || "[]");
+      let currentFilter = "all";
 
-  function formatUnit(unit) {
-    if (unit === "g") return "г";
-    if (unit === "ml") return "мл";
-    if (unit === "pcs") return "шт";
-    if (unit === "to_taste") return "по вкусу";
-    return unit;
-  }
+      function saveFridge() { localStorage.setItem(STORAGE_KEY_FRIDGE, JSON.stringify(fridge)); }
+      function saveCart() { localStorage.setItem(STORAGE_KEY_CART, JSON.stringify(cart)); window.updateCartBadge(); }
 
-  function formatDateForHuman(dateStr) {
-    if (!dateStr) return "без даты";
-    const d = new Date(dateStr);
-    if (Number.isNaN(d.getTime())) return "некорректная дата";
-    return d.toLocaleDateString("ru-RU", { day: "2-digit", month: "2-digit" });
-  }
-
-  function daysDiffFromToday(dateStr) {
-    if (!dateStr) return null;
-    const d = new Date(dateStr);
-    if (Number.isNaN(d.getTime())) return null;
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    d.setHours(0, 0, 0, 0);
-    const diffMs = d.getTime() - today.getTime();
-    return Math.round(diffMs / (1000 * 60 * 60 * 24));
-  }
-
-  // ---------- РЕНДЕРИНГ ----------
-
-  const viewsMap = {
-    dashboard: document.getElementById("view-dashboard"),
-    recipes: document.getElementById("view-recipes"),
-    fridge: document.getElementById("view-fridge")
-  };
-
-  const tabButtons = Array.from(document.querySelectorAll(".tab-button"));
-
-  function switchView(viewName) {
-    Object.entries(viewsMap).forEach(([name, el]) => {
-      if (name === viewName) {
-        el.classList.add("active");
-      } else {
-        el.classList.remove("active");
-      }
-    });
-
-    tabButtons.forEach(btn => {
-      if (btn.dataset.view === viewName) {
-        btn.classList.add("active");
-      } else {
-        btn.classList.remove("active");
-      }
-    });
-
-    if (viewName === "dashboard") {
-      renderSuggestions();
-      renderExpireBlock();
-    } else if (viewName === "fridge") {
-      renderFridge();
-    } else if (viewName === "recipes") {
-      renderRecipes();
-    }
-  }
-
-  tabButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      switchView(btn.dataset.view);
-    });
-  });
-
-  // ----- Рендер холодильника -----
-
-  const fridgeListEl = document.getElementById("fridge-list");
-
-  function renderFridge() {
-    fridgeListEl.innerHTML = "";
-    if (!fridge.length) {
-      const empty = document.createElement("div");
-      empty.className = "fridge-empty";
-      empty.textContent = "В холодильнике пусто. Добавь хотя бы пару продуктов — и подбор рецептов оживёт.";
-      fridgeListEl.appendChild(empty);
-      return;
-    }
-
-    // сортируем: сначала с ближайшим сроком
-    const sorted = [...fridge].sort((a, b) => {
-      const da = daysDiffFromToday(a.expiresAt);
-      const db = daysDiffFromToday(b.expiresAt);
-      if (da == null && db == null) return 0;
-      if (da == null) return 1;
-      if (db == null) return -1;
-      return da - db;
-    });
-
-    sorted.forEach(item => {
-      const li = document.createElement("li");
-      li.className = "fridge-list-item";
-
-      const nameDiv = document.createElement("div");
-      nameDiv.className = "fridge-name";
-      nameDiv.textContent = item.name;
-
-      const amountDiv = document.createElement("div");
-      amountDiv.className = "fridge-amount";
-      amountDiv.textContent = `${item.amount ?? "?"} ${formatUnit(item.unit)}`;
-
-      const expireDiv = document.createElement("div");
-      expireDiv.className = "fridge-expire";
-
-      const diff = daysDiffFromToday(item.expiresAt);
-      let cls = "";
-      let text = "";
-      if (diff == null) {
-        cls = "";
-        text = "Срок не указан";
-      } else if (diff < 0) {
-        cls = "expire-danger";
-        text = `Просрочен ${formatDateForHuman(item.expiresAt)}`;
-      } else if (diff === 0) {
-        cls = "expire-danger";
-        text = `Годен до сегодня (${formatDateForHuman(item.expiresAt)})`;
-      } else if (diff <= 3) {
-        cls = "expire-soon";
-        text = `Годен до ${formatDateForHuman(item.expiresAt)} (${diff} дн.)`;
-      } else {
-        cls = "";
-        text = `До ${formatDateForHuman(item.expiresAt)} (${diff} дн.)`;
-      }
-      expireDiv.classList.add(cls);
-      expireDiv.textContent = text;
-
-      const btnDelete = document.createElement("button");
-      btnDelete.className = "btn-icon";
-      btnDelete.innerHTML = "✕";
-      btnDelete.title = "Удалить продукт";
-      btnDelete.addEventListener("click", () => {
-        fridge = fridge.filter(f => !(f.name === item.name && f.expiresAt === item.expiresAt && f.amount === item.amount && f.unit === item.unit));
-        saveFridge(fridge);
-        renderFridge();
-        renderSuggestions();
-        renderExpireBlock();
-      });
-
-      li.appendChild(nameDiv);
-      li.appendChild(amountDiv);
-      li.appendChild(expireDiv);
-      li.appendChild(btnDelete);
-
-      fridgeListEl.appendChild(li);
-    });
-  }
-
-  // ----- Добавление продукта -----
-
-  const fridgeForm = document.getElementById("fridge-form");
-  const fridgeNameInput = document.getElementById("fridge-name");
-  const fridgeAmountInput = document.getElementById("fridge-amount");
-  const fridgeUnitSelect = document.getElementById("fridge-unit");
-  const fridgeExpireInput = document.getElementById("fridge-expire");
-
-  fridgeForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = fridgeNameInput.value.trim();
-    const amount = parseFloat(fridgeAmountInput.value);
-    const unit = fridgeUnitSelect.value;
-    const expiresAt = fridgeExpireInput.value || null;
-
-    if (!name || Number.isNaN(amount)) {
-      return;
-    }
-
-    fridge.push({ name, amount, unit, expiresAt });
-    saveFridge(fridge);
-    fridgeNameInput.value = "";
-    fridgeAmountInput.value = "";
-    fridgeExpireInput.value = "";
-
-    renderFridge();
-    renderSuggestions();
-    renderExpireBlock();
-  });
-
-  // ----- Рендер рецептов -----
-
-  const recipesListEl = document.getElementById("recipes-list");
-
-  function renderRecipes() {
-    recipesListEl.innerHTML = "";
-    recipes.forEach(recipe => {
-      const { status, missing, lacking } = getRecipeMatchStatus(recipe, fridge);
-
-      const li = document.createElement("li");
-      li.className = "recipe-card";
-
-      // header
-      const headerRow = document.createElement("div");
-      headerRow.className = "recipe-header-row";
-
-      const titleDiv = document.createElement("div");
-      titleDiv.className = "recipe-title";
-      titleDiv.textContent = recipe.title;
-
-      const metaDiv = document.createElement("div");
-      metaDiv.className = "recipe-meta";
-      const timeSpan = document.createElement("span");
-      timeSpan.textContent = `⏱ ${recipe.timeMinutes} мин`;
-      const diffSpan = document.createElement("span");
-      diffSpan.textContent = recipe.difficulty === "easy" ? "легко" : "средне";
-      metaDiv.appendChild(timeSpan);
-      metaDiv.appendChild(diffSpan);
-
-      headerRow.appendChild(titleDiv);
-      headerRow.appendChild(metaDiv);
-
-      // status chip
-      const statusChip = document.createElement("span");
-      statusChip.className = "status-chip";
-      if (status === "full") {
-        statusChip.classList.add("status-full");
-        statusChip.textContent = "ВСЁ ЕСТЬ";
-      } else if (status === "partial") {
-        statusChip.classList.add("status-partial");
-        statusChip.textContent = "НУЖНО ДОКУПИТЬ";
-      } else {
-        statusChip.classList.add("status-partial");
-        statusChip.textContent = "ПОКА НЕТ ПРОДУКТОВ";
+      const allIngredientsCanon = Array.from(new Set(recipes.flatMap(r => r.ingredients.map(i => i.name)))).sort();
+      
+      function getCanonicalName(input) {
+          const lower = input.trim().toLowerCase();
+          const direct = allIngredientsCanon.find(ci => ci.toLowerCase() === lower);
+          if (direct) return direct;
+          for (const [canon, variants] of Object.entries(SYNONYMS)) {
+              if (variants.some(v => v === lower) || canon.toLowerCase() === lower) return canon;
+          }
+          return input.charAt(0).toUpperCase() + input.slice(1);
       }
 
-      // body
-      const bodyDiv = document.createElement("div");
-      bodyDiv.className = "recipe-body";
-
-      const ingSummary = document.createElement("div");
-      ingSummary.textContent = `Ингредиентов: ${recipe.ingredients.length}`;
-      bodyDiv.appendChild(ingSummary);
-
-      if (missing.length || lacking.length) {
-        const chips = document.createElement("div");
-        chips.className = "chips-row";
-        missing.forEach(ing => {
-          const chip = document.createElement("span");
-          chip.className = "chip-muted";
-          chip.textContent = `Нет: ${ing.name}`;
-          chips.appendChild(chip);
-        });
-        lacking.forEach(entry => {
-          const chip = document.createElement("span");
-          chip.className = "chip-muted";
-          chip.textContent = `Мало: ${entry.ingredient.name} (нужно ещё ${entry.need} ${formatUnit(entry.ingredient.unit)})`;
-          chips.appendChild(chip);
-        });
-        bodyDiv.appendChild(chips);
+      function getCategoryForIngredient(name) {
+          const lower = name.toLowerCase();
+          for (const [key, data] of Object.entries(INGREDIENT_CATEGORIES)) {
+              if (data.items.some(i => i === lower)) return key;
+          }
+          return "other";
       }
 
-      // details with steps
-      const detailsEl = document.createElement("details");
-      const summaryEl = document.createElement("summary");
-      summaryEl.textContent = "Показать шаги приготовления";
-      detailsEl.appendChild(summaryEl);
+      function formatUnit(unit) { const map = { "g": "г", "ml": "мл", "pcs": "шт", "to_taste": "по вкусу" }; return map[unit] || unit; }
+      function getDaysDiff(d) { if(!d) return null; return Math.ceil((new Date(d) - new Date().setHours(0,0,0,0)) / (1000 * 60 * 60 * 24)); }
 
-      const stepsOl = document.createElement("ol");
-      stepsOl.className = "steps";
-      recipe.steps.forEach(step => {
-        const liStep = document.createElement("li");
-        liStep.textContent = step;
-        stepsOl.appendChild(liStep);
-      });
-      detailsEl.appendChild(stepsOl);
-      bodyDiv.appendChild(detailsEl);
-
-      // actions
-      const actionsDiv = document.createElement("div");
-      actionsDiv.className = "recipe-actions";
-
-      const leftActions = document.createElement("div");
-      leftActions.appendChild(statusChip);
-
-      const rightActions = document.createElement("div");
-      rightActions.style.display = "flex";
-      rightActions.style.gap = "6px";
-
-      const cookBtn = document.createElement("button");
-      cookBtn.className = "btn-ghost";
-      cookBtn.textContent = "Я приготовил";
-      cookBtn.addEventListener("click", () => {
-        cookRecipe(recipe.id);
-      });
-      rightActions.appendChild(cookBtn);
-
-      const buyBtn = document.createElement("button");
-      buyBtn.className = "btn-ghost";
-      buyBtn.textContent = "Купил всё для рецепта";
-      buyBtn.addEventListener("click", () => {
-        buyForRecipe(recipe.id);
-      });
-      rightActions.appendChild(buyBtn);
-
-      if (recipe.sourceUrl) {
-        const linkBtn = document.createElement("a");
-        linkBtn.href = recipe.sourceUrl;
-        linkBtn.target = "_blank";
-        linkBtn.rel = "noreferrer";
-        linkBtn.className = "btn-ghost";
-        linkBtn.textContent = "Оригинал на сайте";
-        rightActions.appendChild(linkBtn);
-      }
-
-      actionsDiv.appendChild(leftActions);
-      actionsDiv.appendChild(rightActions);
-
-      li.appendChild(headerRow);
-      li.appendChild(bodyDiv);
-      li.appendChild(actionsDiv);
-
-      recipesListEl.appendChild(li);
-    });
-  }
-
-  // ----- Подбор рецептов на главной -----
-
-  const suggestedListEl = document.getElementById("suggested-list");
-
-  function renderSuggestions() {
-    suggestedListEl.innerHTML = "";
-
-    if (!recipes.length) {
-      const empty = document.createElement("div");
-      empty.className = "suggest-empty";
-      empty.textContent = "Рецептов пока нет. Добавь хотя бы один рецепт в коде.";
-      suggestedListEl.appendChild(empty);
-      return;
-    }
-
-    if (!fridge.length) {
-      const empty = document.createElement("div");
-      empty.className = "suggest-empty";
-      empty.textContent = "Холодильник пуст. Заполни продукты, чтобы я мог что-то предложить.";
-      suggestedListEl.appendChild(empty);
-      return;
-    }
-
-    const statuses = recipes.map(r => ({
-      recipe: r,
-      match: getRecipeMatchStatus(r, fridge)
-    }));
-
-    const full = statuses.filter(x => x.match.status === "full");
-    const partial = statuses.filter(x => x.match.status === "partial");
-
-    if (!full.length && !partial.length) {
-      const empty = document.createElement("div");
-      empty.className = "suggest-empty";
-      empty.textContent = "С тем, что сейчас есть в холодильнике, ни один рецепт не собирается. Попробуй что-то докупить.";
-      suggestedListEl.appendChild(empty);
-      return;
-    }
-
-    const addSectionTitle = (text) => {
-      const title = document.createElement("div");
-      title.style.fontSize = "13px";
-      title.style.marginBottom = "4px";
-      title.style.marginTop = "4px";
-      title.style.color = "var(--text-muted)";
-      title.textContent = text;
-      suggestedListEl.appendChild(title);
-    };
-
-    if (full.length) {
-      addSectionTitle("✅ Можно приготовить прямо сейчас:");
-      full.forEach(item => {
-        const li = document.createElement("li");
-        li.className = "recipe-card";
-
-        const headerRow = document.createElement("div");
-        headerRow.className = "recipe-header-row";
-
-        const titleDiv = document.createElement("div");
-        titleDiv.className = "recipe-title";
-        titleDiv.textContent = item.recipe.title;
-
-        const metaDiv = document.createElement("div");
-        metaDiv.className = "recipe-meta";
-        const timeSpan = document.createElement("span");
-        timeSpan.textContent = `⏱ ${item.recipe.timeMinutes} мин`;
-        metaDiv.appendChild(timeSpan);
-
-        headerRow.appendChild(titleDiv);
-        headerRow.appendChild(metaDiv);
-
-        const bodyDiv = document.createElement("div");
-        bodyDiv.className = "recipe-body";
-        bodyDiv.textContent = "Все основные ингредиенты уже есть в холодильнике.";
-
-        const actions = document.createElement("div");
-        actions.className = "recipe-actions";
-
-        const statusChip = document.createElement("span");
-        statusChip.className = "status-chip status-full";
-        statusChip.textContent = "ВСЁ ЕСТЬ";
-
-        const btn = document.createElement("button");
-        btn.className = "btn-ghost";
-        btn.textContent = "Открыть рецепт";
-        btn.addEventListener("click", () => {
-          switchView("recipes");
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-
-        actions.appendChild(statusChip);
-        actions.appendChild(btn);
-
-        li.appendChild(headerRow);
-        li.appendChild(bodyDiv);
-        li.appendChild(actions);
-
-        suggestedListEl.appendChild(li);
-      });
-    }
-
-    if (partial.length) {
-      addSectionTitle("🟡 Можно почти приготовить — нужно чуть-чуть докупить:");
-      partial.forEach(item => {
-        const li = document.createElement("li");
-        li.className = "recipe-card";
-
-        const headerRow = document.createElement("div");
-        headerRow.className = "recipe-header-row";
-
-        const titleDiv = document.createElement("div");
-        titleDiv.className = "recipe-title";
-        titleDiv.textContent = item.recipe.title;
-
-        const metaDiv = document.createElement("div");
-        metaDiv.className = "recipe-meta";
-        const timeSpan = document.createElement("span");
-        timeSpan.textContent = `⏱ ${item.recipe.timeMinutes} мин`;
-        metaDiv.appendChild(timeSpan);
-
-        headerRow.appendChild(titleDiv);
-        headerRow.appendChild(metaDiv);
-
-        const bodyDiv = document.createElement("div");
-        bodyDiv.className = "recipe-body";
-
-        const chips = document.createElement("div");
-        chips.className = "chips-row";
-        item.match.missing.forEach(ing => {
-          const chip = document.createElement("span");
-          chip.className = "chip-muted";
-          chip.textContent = `Нет: ${ing.name}`;
-          chips.appendChild(chip);
-        });
-        item.match.lacking.forEach(entry => {
-          const chip = document.createElement("span");
-          chip.className = "chip-muted";
-          chip.textContent = `Мало: ${entry.ingredient.name}`;
-          chips.appendChild(chip);
-        });
-        bodyDiv.appendChild(chips);
-
-        const actions = document.createElement("div");
-        actions.className = "recipe-actions";
-
-        const statusChip = document.createElement("span");
-        statusChip.className = "status-chip status-partial";
-        statusChip.textContent = "НУЖНО ДОКУПИТЬ";
-
-        const btn = document.createElement("button");
-        btn.className = "btn-ghost";
-        btn.textContent = "Список покупок";
-        btn.addEventListener("click", () => {
-          const lines = [];
-          item.match.missing.forEach(ing => {
-            lines.push(`- ${ing.name}: ${ing.amount ?? ""} ${formatUnit(ing.unit)}`);
+      // 3. ОСНОВНЫЕ ФУНКЦИИ (навешиваем на window)
+      
+      window.switchView = function(view) {
+          const sections = { dashboard: "view-dashboard", recipes: "view-recipes", fridge: "view-fridge", cart: "view-cart" };
+          Object.values(sections).forEach(id => document.getElementById(id).classList.remove("active"));
+          document.getElementById(sections[view]).classList.add("active");
+          
+          // Обновляем стили кнопок навигации (простой поиск по тексту, т.к. onclick жестко задан)
+          document.querySelectorAll(".tab-button").forEach(btn => {
+              if (btn.getAttribute("onclick").includes(view)) btn.classList.add("active");
+              else btn.classList.remove("active");
           });
-          item.match.lacking.forEach(entry => {
-            lines.push(`- ${entry.ingredient.name}: докупить ${entry.need} ${formatUnit(entry.ingredient.unit)}`);
+
+          if(view === 'fridge') window.renderFridge();
+          if(view === 'cart') window.renderCart();
+          if(view === 'recipes') window.renderRecipes();
+          if(view === 'dashboard') { window.renderSuggestions(); window.renderExpireBlock(); }
+      };
+
+      window.filterRecipes = function(type, btnElement) {
+          currentFilter = type;
+          document.querySelectorAll(".filter-chip").forEach(b => b.classList.remove("active"));
+          btnElement.classList.add("active");
+          window.renderRecipes();
+      };
+
+      // КОРЗИНА
+      window.addToCart = function(ingredients) {
+          ingredients.forEach(newMsg => {
+             const existing = cart.find(c => c.name === newMsg.name && c.unit === newMsg.unit && !c.checked);
+             if (existing) existing.amount += newMsg.amount;
+             else cart.push({ name: newMsg.name, amount: newMsg.amount, unit: newMsg.unit, checked: false, id: Date.now() + Math.random() });
           });
-          alert("Что докупить:\n\n" + (lines.join("\n") || "Нечего докупать"));
-        });
+          saveCart();
+          alert(`Добавлено в корзину!`);
+          window.updateCartBadge();
+      };
 
-        actions.appendChild(statusChip);
-        actions.appendChild(btn);
+      window.toggleCartItem = function(id) {
+          const item = cart.find(c => c.id == id);
+          if (item) { item.checked = !item.checked; saveCart(); window.renderCart(); }
+      };
 
-        li.appendChild(headerRow);
-        li.appendChild(bodyDiv);
-        li.appendChild(actions);
+      window.clearCompletedCart = function() {
+          cart = cart.filter(c => !c.checked);
+          saveCart();
+          window.renderCart();
+      };
 
-        suggestedListEl.appendChild(li);
+      window.renderCart = function() {
+          const list = document.getElementById("cart-list");
+          list.innerHTML = "";
+          if (!cart.length) { list.innerHTML = '<div class="p-8 text-center text-gray-400">Корзина пуста 🛒</div>'; return; }
+          cart.forEach(item => {
+              const li = document.createElement("li");
+              li.className = "flex items-center justify-between p-4 bg-white hover:bg-gray-50 transition";
+              const textClass = item.checked ? "line-through-gray" : "text-gray-800";
+              const amountDisplay = item.amount ? `${parseFloat(item.amount.toFixed(1))} ${formatUnit(item.unit)}` : "";
+              li.innerHTML = `
+                  <div class="flex items-center gap-3 flex-1 cursor-pointer" onclick="window.toggleCartItem('${item.id}')">
+                      <input type="checkbox" class="cart-checkbox" ${item.checked ? "checked" : ""}>
+                      <div class="${textClass} font-medium">${item.name} <span class="text-sm text-gray-500 font-normal ml-1">${amountDisplay}</span></div>
+                  </div>
+                  <button class="text-gray-300 hover:text-red-500 p-2" onclick="window.deleteCartItem('${item.id}')">✕</button>`;
+              list.appendChild(li);
+          });
+          window.updateCartBadge();
+      };
+
+      window.deleteCartItem = function(id) { cart = cart.filter(c => c.id != id); saveCart(); window.renderCart(); };
+      window.updateCartBadge = function() {
+          const badge = document.getElementById("cart-badge");
+          const count = cart.filter(c => !c.checked).length;
+          badge.textContent = count;
+          badge.classList.toggle("hidden", count === 0);
+      };
+
+      // ХОЛОДИЛЬНИК
+      window.renderFridge = function() {
+          const container = document.getElementById("fridge-categories-container");
+          container.innerHTML = "";
+          if (!fridge.length) { container.innerHTML = '<div class="p-6 text-center text-gray-400 italic">Холодильник пуст. Добавьте продукты сверху.</div>'; return; }
+          
+          const groups = { "veg": [], "meat": [], "dairy": [], "grocery": [], "other": [] };
+          fridge.forEach(item => {
+              const catKey = getCategoryForIngredient(item.name);
+              if (groups[catKey]) groups[catKey].push(item); else groups["other"].push(item);
+          });
+
+          Object.keys(groups).forEach(key => {
+              if (groups[key].length === 0) return;
+              const label = INGREDIENT_CATEGORIES[key]?.label || "📦 Разное";
+              const section = document.createElement("div");
+              section.innerHTML = `<h4 class="font-bold text-gray-700 mb-2 px-1 sticky top-0 bg-gray-50/90 py-1 backdrop-blur-sm">${label}</h4>`;
+              const ul = document.createElement("ul");
+              ul.className = "bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm divide-y divide-gray-100";
+              
+              groups[key].sort((a,b) => (getDaysDiff(a.expiresAt) ?? 999) - (getDaysDiff(b.expiresAt) ?? 999)).forEach(item => {
+                  const li = document.createElement("li");
+                  li.className = "flex items-center justify-between p-3 hover:bg-orange-50/30 transition";
+                  const diff = getDaysDiff(item.expiresAt);
+                  let dateBadge = "";
+                  if (diff !== null) {
+                      if (diff < 0) dateBadge = `<span class="text-[10px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-bold">Просрочено</span>`;
+                      else if (diff <= 2) dateBadge = `<span class="text-[10px] bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">Срок!</span>`;
+                  }
+                  li.innerHTML = `
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2"><span class="font-medium text-gray-800">${item.name}</span>${dateBadge}</div>
+                        <div class="text-xs text-gray-500">${item.amount} ${formatUnit(item.unit)}</div>
+                    </div>
+                    <button class="text-gray-300 hover:text-red-500 p-2" onclick="window.deleteFridgeItem('${item.name}')">✕</button>`;
+                  ul.appendChild(li);
+              });
+              section.appendChild(ul);
+              container.appendChild(section);
+          });
+      };
+
+      window.deleteFridgeItem = function(name) {
+          fridge = fridge.filter(i => i.name !== name); saveFridge(); window.renderFridge();
+      };
+
+      document.getElementById("fridge-form").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const nameInput = document.getElementById("fridge-name");
+          const name = getCanonicalName(nameInput.value);
+          const amount = parseFloat(document.getElementById("fridge-amount").value);
+          const unit = document.getElementById("fridge-unit").value;
+          const expiresAt = document.getElementById("fridge-expire").value || null;
+          if(!name || isNaN(amount)) return;
+
+          const existing = fridge.find(i => i.name === name && i.unit === unit);
+          if (existing) { existing.amount += amount; if (expiresAt) existing.expiresAt = expiresAt; }
+          else { fridge.push({name, amount, unit, expiresAt}); }
+          
+          saveFridge();
+          nameInput.value = "";
+          document.getElementById("fridge-amount").value = "";
+          window.renderFridge();
       });
-    }
-  }
 
-  // ----- Сроки годности на главной -----
-
-  const expireBlockEl = document.getElementById("expire-block");
-
-  function renderExpireBlock() {
-    expireBlockEl.innerHTML = "";
-    if (!fridge.length) {
-      const text = document.createElement("div");
-      text.className = "secondary-text";
-      text.textContent = "Пока нет ни одного продукта — нечему портиться 🙂";
-      expireBlockEl.appendChild(text);
-      return;
-    }
-
-    const withDates = fridge
-      .map(item => ({ item, diff: daysDiffFromToday(item.expiresAt) }))
-      .filter(x => x.diff !== null)
-      .sort((a, b) => a.diff - b.diff);
-
-    const soon = withDates.filter(x => x.diff <= 3);
-    if (!soon.length) {
-      const text = document.createElement("div");
-      text.className = "secondary-text";
-      text.textContent = "Ни у одного продукта не горит срок в ближайшие 3 дня.";
-      expireBlockEl.appendChild(text);
-      return;
-    }
-
-    soon.slice(0, 5).forEach(x => {
-      const tag = document.createElement("div");
-      tag.className = "expire-tag";
-      const dot = document.createElement("span");
-      dot.className = "dot";
-      const label = document.createElement("span");
-      const prefix = x.diff < 0
-        ? "Просрочено:"
-        : x.diff === 0
-        ? "Сегодня последний день:"
-        : x.diff === 1
-        ? "Завтра истекает:"
-        : "Скоро истечёт:";
-      label.textContent = `${prefix} ${x.item.name} (${formatDateForHuman(x.item.expiresAt)})`;
-      tag.appendChild(dot);
-      tag.appendChild(label);
-      expireBlockEl.appendChild(tag);
-    });
-
-    if (withDates.length > 5) {
-      const more = document.createElement("div");
-      more.className = "secondary-text";
-      more.textContent = `Ещё ${withDates.length - 5} позиций с датой — смотри во вкладке «Холодильник».`;
-      expireBlockEl.appendChild(more);
-    }
-  }
-
-  // ----- Списание продуктов при готовке -----
-
-  function cookRecipe(recipeId) {
-    const recipe = recipes.find(r => r.id === recipeId);
-    if (!recipe) return;
-    let changed = false;
-
-    recipe.ingredients.forEach(ing => {
-      if (ing.amount === null || ing.unit === "to_taste") return;
-      const item = findFridgeItemByName(fridge, ing.name);
-      if (!item || typeof item.amount !== "number") return;
-      const newAmount = item.amount - ing.amount;
-      if (newAmount <= 0) {
-        fridge = fridge.filter(f => f !== item);
-      } else {
-        item.amount = Math.round(newAmount * 100) / 100;
-      }
-      changed = true;
-    });
-
-    if (changed) {
-      saveFridge(fridge);
-      renderFridge();
-      renderSuggestions();
-      renderRecipes();
-      renderExpireBlock();
-      alert("Продукты для этого рецепта списаны из холодильника (насколько удалось сопоставить по названию).");
-    } else {
-      alert("Не удалось списать продукты — похоже, ничего из ингредиентов не найдено в холодильнике по имени.");
-    }
-  }
-
-  // ----- Покупка «всё для рецепта» -----
-
-  function buyForRecipe(recipeId) {
-    const recipe = recipes.find(r => r.id === recipeId);
-    if (!recipe) return;
-
-    const addedLines = [];
-
-    recipe.ingredients.forEach(ing => {
-      if (ing.amount === null || ing.unit === "to_taste") return;
-
-      const key = normalizeName(ing.name);
-      const pkg = defaultPackages[key];
-      const addAmount = pkg?.amount ?? ing.amount;
-      const unit = pkg?.unit ?? ing.unit;
-
-      if (!addAmount || !unit) return;
-
-      // ищем уже существующий продукт с таким именем и единицей
-      let item = fridge.find(
-        f => normalizeName(f.name) === key && f.unit === unit
-      );
-
-      if (item) {
-        item.amount = (Number(item.amount) || 0) + addAmount;
-      } else {
-        item = {
-          name: ing.name,
-          amount: addAmount,
-          unit,
-          expiresAt: null
-        };
-        fridge.push(item);
+      // РЕЦЕПТЫ
+      function getRecipeMatchStatus(recipe, portionMultiplier = 1) {
+          const missing = [];
+          recipe.ingredients.forEach(ing => {
+            if (ing.amount === null) return;
+            const needed = ing.amount * portionMultiplier;
+            const fridgeItem = fridge.find(i => i.name.toLowerCase() === ing.name.toLowerCase());
+            if (!fridgeItem) missing.push({ ...ing, amount: needed });
+            else if (fridgeItem.amount < needed) missing.push({ ...ing, amount: needed - fridgeItem.amount });
+          });
+          return { status: missing.length === 0 ? "full" : missing.length === recipe.ingredients.length ? "none" : "partial", missing };
       }
 
-      addedLines.push(`${ing.name}: +${addAmount} ${formatUnit(unit)}`);
-    });
+      function createRecipeCard(recipe, matchInfo) {
+          const li = document.createElement("li");
+          li.className = "recipe-card";
+          li.dataset.id = recipe.id;
+          li.dataset.base = recipe.basePortions;
+          li.dataset.current = recipe.basePortions;
 
-    saveFridge(fridge);
-    renderFridge();
-    renderSuggestions();
-    renderExpireBlock();
-    renderRecipes();
+          let statusBadge = "";
+          if (matchInfo.status === "full") statusBadge = `<span class="status-chip status-full">Готовь!</span>`;
+          else if (matchInfo.status === "partial") statusBadge = `<span class="status-chip status-partial">Докупить</span>`;
 
-    if (addedLines.length) {
-      alert(
-        "Добавлены покупки по рецепту:\n\n" +
-          addedLines.join("\n") +
-          "\n\nНе забудь проставить сроки годности в разделе «Холодильник»."
-      );
-    } else {
-      alert("Не получилось подобрать упаковки для этого рецепта. Можно добавить продукты вручную в «Холодильник».");
-    }
-  }
+          const ingredientsHtml = recipe.ingredients.map(ing => {
+             const fridgeItem = fridge.find(i => i.name.toLowerCase() === ing.name.toLowerCase());
+             const hasEnough = fridgeItem && fridgeItem.amount >= ing.amount;
+             const color = !fridgeItem ? "text-red-500" : (!hasEnough ? "text-orange-500" : "text-gray-700");
+             return `<div class="flex justify-between ${color}"><span>${ing.name}</span><span class="ing-amount" data-base="${ing.amount}">${ing.amount} ${formatUnit(ing.unit)}</span></div>`;
+          }).join('');
 
-  // ----- Кнопка «Что приготовить сейчас» -----
+          li.innerHTML = `
+             <div class="relative"><img src="${recipe.img}" class="recipe-image"><div class="absolute bottom-2 right-2 bg-white/90 px-2 py-1 rounded text-xs font-bold text-gray-700 shadow-sm">⏱ ${recipe.timeMinutes} мин</div></div>
+             <div class="recipe-content">
+                <div class="flex justify-between items-start mb-2"><h3 class="font-bold text-gray-800 text-lg leading-tight w-3/4">${recipe.title}</h3></div>
+                ${statusBadge}
+                <div class="flex items-center justify-between bg-orange-50 rounded-lg p-2 my-3">
+                    <span class="text-sm font-semibold text-orange-800">Порции:</span>
+                    <div class="flex items-center bg-white rounded-md shadow-sm border border-orange-200">
+                        <button class="px-3 py-1 text-orange-600 hover:bg-orange-50 font-bold" onclick="window.changePortion('${recipe.id}', -1)">-</button>
+                        <span class="px-2 font-bold text-gray-800 w-8 text-center portion-val">${recipe.basePortions}</span>
+                        <button class="px-3 py-1 text-orange-600 hover:bg-orange-50 font-bold" onclick="window.changePortion('${recipe.id}', 1)">+</button>
+                    </div>
+                </div>
+                <div class="ing-list mb-4 text-sm text-gray-600 space-y-1">${ingredientsHtml}</div>
+                <div class="flex gap-2">
+                     <button onclick="window.cookRecipe('${recipe.id}')" class="flex-1 bg-green-100 text-green-700 py-2 rounded text-sm font-semibold hover:bg-green-200">✅ Готово</button>
+                     <button onclick="window.addMissingToCart('${recipe.id}')" class="flex-1 bg-orange-100 text-orange-700 py-2 rounded text-sm font-semibold hover:bg-orange-200">🛒 В корзину</button>
+                </div>
+             </div>`;
+          return li;
+      }
 
-  const btnWhatToCook = document.getElementById("btn-what-to-cook");
-  btnWhatToCook.addEventListener("click", () => {
-    switchView("dashboard");
-    renderSuggestions();
-    renderExpireBlock();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+      window.changePortion = function(id, delta) {
+          const card = document.querySelector(`li[data-id="${id}"]`);
+          let current = parseInt(card.dataset.current) + delta;
+          if (current < 1) current = 1;
+          card.dataset.current = current;
+          card.querySelector(".portion-val").textContent = current;
+          const ratio = current / parseInt(card.dataset.base);
+          card.querySelectorAll(".ing-amount").forEach(el => {
+              const base = parseFloat(el.dataset.base);
+              if (base) el.textContent = `${parseFloat((base * ratio).toFixed(1))} ${el.textContent.split(' ')[1]}`;
+          });
+      };
 
-  // ----- ИНИЦИАЛИЗАЦИЯ -----
-  renderFridge();
-  renderRecipes();
-  renderSuggestions();
-  renderExpireBlock();
-</script>
+      window.addMissingToCart = function(id) {
+          const card = document.querySelector(`li[data-id="${id}"]`);
+          const recipe = recipes.find(r => r.id === id);
+          const ratio = parseInt(card.dataset.current) / parseInt(card.dataset.base);
+          const { missing } = getRecipeMatchStatus(recipe, ratio);
+          if (missing.length === 0) { alert("У вас и так все есть для этого рецепта!"); return; }
+          window.addToCart(missing);
+      };
+      
+      window.cookRecipe = function(id) {
+          const card = document.querySelector(`li[data-id="${id}"]`);
+          const recipe = recipes.find(r => r.id === id);
+          const ratio = parseInt(card.dataset.current) / parseInt(card.dataset.base);
+          if(!confirm(`Списать продукты?`)) return;
+          let changed = false;
+          recipe.ingredients.forEach(ing => {
+              const fridgeItem = fridge.find(i => i.name.toLowerCase() === ing.name.toLowerCase());
+              if(fridgeItem && ing.amount) {
+                  fridgeItem.amount -= (ing.amount * ratio);
+                  if (fridgeItem.amount <= 0) fridge = fridge.filter(f => f !== fridgeItem);
+                  changed = true;
+              }
+          });
+          if(changed) { saveFridge(); window.renderFridge(); window.renderRecipes(); alert("Продукты списаны."); } 
+          else { alert("Нечего списывать."); }
+      };
+
+      window.renderRecipes = function() {
+          const list = document.getElementById("recipes-list");
+          list.innerHTML = "";
+          const filtered = currentFilter === "all" ? recipes : recipes.filter(r => r.type === currentFilter);
+          filtered.forEach(r => list.appendChild(createRecipeCard(r, getRecipeMatchStatus(r, 1))));
+      };
+
+      window.renderSuggestions = function() {
+          const list = document.getElementById("suggested-list");
+          list.innerHTML = "";
+          const suggestions = recipes.map(r => ({ r, match: getRecipeMatchStatus(r) })).filter(x => x.match.status !== "none").sort((a,b) => (a.match.status === "full" ? -1 : 1));
+          if(!suggestions.length) list.innerHTML = '<div class="text-center py-8 text-gray-500">Добавьте продукты в холодильник!</div>';
+          suggestions.forEach(item => list.appendChild(createRecipeCard(item.r, item.match)));
+      };
+
+      window.renderExpireBlock = function() {
+         const block = document.getElementById("expire-block");
+         block.innerHTML = "";
+         const badItems = fridge.filter(i => getDaysDiff(i.expiresAt) !== null && getDaysDiff(i.expiresAt) <= 2);
+         if(!badItems.length) block.innerHTML = '<div class="text-sm text-gray-500 bg-green-50 p-2 rounded">Все свежее!</div>';
+         else badItems.forEach(i => block.innerHTML += `<div class="text-sm p-2 bg-red-50 text-red-800 rounded mb-1">⏰ ${i.name} истекает!</div>`);
+      };
+
+      // AUTOCOMPLETE
+      (function setupAutocomplete() {
+          const inp = document.getElementById("fridge-name");
+          inp.addEventListener("input", function(e) {
+              let val = this.value;
+              let listDiv = document.getElementById("autocomplete-list");
+              listDiv.innerHTML = "";
+              if (!val) return;
+              const suggestions = new Set();
+              allIngredientsCanon.forEach(ci => { if(ci.toLowerCase().includes(val.toLowerCase())) suggestions.add(ci); });
+              let count = 0;
+              for (let sug of suggestions) {
+                  if (count > 5) break;
+                  const itemDiv = document.createElement("DIV");
+                  itemDiv.innerHTML = `<b>${sug.substr(0, val.length)}</b>${sug.substr(val.length)}`;
+                  itemDiv.innerHTML += `<input type='hidden' value='${sug}'>`;
+                  itemDiv.addEventListener("click", function() {
+                      inp.value = this.getElementsByTagName("input")[0].value;
+                      listDiv.innerHTML = "";
+                  });
+                  listDiv.appendChild(itemDiv);
+                  count++;
+              }
+          });
+      })();
+
+      // ИНИЦИАЛИЗАЦИЯ
+      window.updateCartBadge();
+      window.switchView("dashboard");
+    </script>
+</body>
+</html>
